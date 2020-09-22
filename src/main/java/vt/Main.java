@@ -8,7 +8,6 @@ import com.opencsv.exceptions.CsvValidationException;
 public class Main {
 
 	public static void main(String[] args) throws CsvValidationException {
-		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
 		Service service = new Service();
 		boolean exit = false;
