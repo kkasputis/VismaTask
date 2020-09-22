@@ -44,7 +44,7 @@ public class Main {
 				(Integer.valueOf(input[1].split("-")[2]) < 31) && (Integer.valueOf(input[1].split("-")[2]) > 0)) {
 			System.out.println("Products that expire before " + input[1] + ":");
 			for (Product product : service.findByExpiration(products, input[1])) {
-				System.out.println("Product name: " + product.getItemName() + " Products code: " + product.getCode() + " Quantity left: " + 
+				System.out.println("Product name: " + product.getItemName() + " Product code: " + product.getCode() + " Quantity left: " + 
 			product.getQuantity() + " Expiration date: " + product.getExpirationDate());
 				System.out.println("----------------------------------------------------------------------------------");
 			}
