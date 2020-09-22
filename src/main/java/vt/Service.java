@@ -27,22 +27,22 @@ public class Service {
 				product.setCode(Long.valueOf(line[1]));
 				product.setQuantity(Integer.valueOf(line[2]));
 				product.setExpirationDate(LocalDate.parse(line[3], dateFormat));
-				Product sameProduct = products.stream().filter(x -> x.getItemName().equals(product.getItemName())).
-						filter(x -> x.getCode() == product.getCode())
-						.filter(x -> x.getExpirationDate().equals(product.getExpirationDate())).findFirst().orElse(null);
+				Product sameProduct = products.stream().filter(x -> x.getItemName().equals(product.getItemName()))
+						.filter(x -> x.getCode() == product.getCode())
+						.filter(x -> x.getExpirationDate().equals(product.getExpirationDate())).findFirst()
+						.orElse(null);
 				if (sameProduct != null) {
 					int index = products.indexOf(sameProduct);
 					sameProduct.setQuantity(sameProduct.getQuantity() + product.getQuantity());
 					products.set(index, sameProduct);
-				}
-				else {
+				} else {
 					products.add(product);
 				}
 
-
 			}
 			products = products.stream()
-			  .sorted((object1, object2) -> object1.getItemName().compareTo(object2.getItemName())).collect(Collectors.toList());
+					.sorted((object1, object2) -> object1.getItemName().compareTo(object2.getItemName()))
+					.collect(Collectors.toList());
 
 		} catch (IOException e) {
 			System.out.println("Reading CSV file failed..." + e);
@@ -52,14 +52,15 @@ public class Service {
 	}
 
 	public List<Product> findByQuantity(List<Product> products, int quantity) {
-		
+
 		return products.stream().filter(x -> x.getQuantity() < quantity).collect(Collectors.toList());
 	}
 
 	public List<Product> findByExpiration(List<Product> products, String date) {
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-	 return products.stream().filter(x -> x.getExpirationDate().isBefore(LocalDate.parse(date, dateFormat))).collect(Collectors.toList());
+		return products.stream().filter(x -> x.getExpirationDate().isBefore(LocalDate.parse(date, dateFormat)))
+				.collect(Collectors.toList());
 	}
 
 }
