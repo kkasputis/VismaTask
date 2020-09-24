@@ -60,13 +60,13 @@ public class Main {
 				}
 			} else if (input[0].equalsIgnoreCase("exit")) {
 				exit = true;
-				scanner.close();
+		
 				continue;
 			} else {
 				System.out.println("Invalid command. Please try again.");
 			}
 		}
-
+		scanner.close();
 	}
 
 }
